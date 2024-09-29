@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aberoth-ephemeris"
+dynamic = ["version"]
+
+requires-python = ">= 3.8"
+dependencies = [
+    "numpy==1.26.4",
+    "python-dotenv==1.0.1",
+    "Flask==3.0.3",
+    "Flask-Cors==4.0.1",
+    "waitress==3.0.0",
+]
+
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["aberoth", "solar system", "orbs", "ephemeris"]
+
+[project.optional-dependencies]
+dev = ["pytest", "black", "pre_commit", "twine", "wheel", "setuptools"]
+
+[project.scripts]
+aberoth_ephemeris = "aberoth_ephemeris:__init__"

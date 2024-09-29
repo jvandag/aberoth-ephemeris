@@ -1,0 +1,73 @@
+{
+    "shadow": {
+        "period": 236058480,
+        "refTime": 1621112425315,
+        "refOffset": 270
+    },
+    "candle": {
+        "period": 3155690880,
+        "radius": 1,
+        "refTime": 1715408029250,
+        "refOffset": 0,
+        "refPos": 75.11734465119662
+    },
+    "white": {
+        "school": "Divination"
+    },
+    "black": {
+        "school": "Evocation",
+        "period": 760047290,
+        "radius": 0.3952033046,
+        "refTime": 1713087572000,
+        "refOffset": 180,
+        "refPos": 350.40047542476594
+    },
+    "green": {
+        "school": "Enchantment",
+        "period": 1941367640,
+        "radius": 0.72333199,
+        "refTime": 1711802459000,
+        "refOffset": 180,
+        "refPos": 203.79527941773495
+    },
+    "red": {
+        "school": "Necromancy",
+        "period": 5934970046,
+        "radius": 1.530240201,
+        "refTime": 1713044109500,
+        "refOffset": 0,
+        "refPos": 165.44229016677258
+    },
+    "purple": {
+        "school": "Transmutation",
+        "period": 37418000800,
+        "radius": 5.21106301,
+        "refTime": 1712609602500,
+        "refOffset": 180,
+        "refPos": 295.873898981385
+    },
+    "yellow": {
+        "school": "Conjuration",
+        "period": 92822061600,
+        "radius": 9.55207032,
+        "refTime": 1713693899500,
+        "refOffset": 0,
+        "refPos": 239.570083063902
+    },
+    "cyan": {
+        "school": "Abjuration",
+        "period": 264286713600,
+        "radius": 19.21026393,
+        "refTime": 1713779691000,
+        "refOffset": 180,
+        "refPos": 69.35714433651941
+    },
+    "blue": {
+        "school": "Illusion",
+        "period": 516671136000,
+        "radius": 30.06896348,
+        "refTime": 1712081339000,
+        "refOffset": 0,
+        "refPos": 55.60980239154412
+    }
+}
