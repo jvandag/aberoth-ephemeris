@@ -6,7 +6,7 @@
 
 <h1 align="center">Aberoth Ephemeris</h1>
 
-<p>A Python module that provides information about upcoming scroll events and moon phases in the MMORPG <a href="https://www.aberoth.com">Aberoth</a>. If you're looking for an easy way to get the predictions from this module in a more human readable form without creating having to your own application, check out the <a href="https://github.com/aberoth-community/ephemeris-discord-bot">Ephemeris Discord Bot</a>.</p>
+<p>A Python module that provides information about upcoming scroll events and moon phases in the MMORPG <a href="https://www.aberoth.com" target="_blank">Aberoth</a>. If you're looking for an easy way to get the predictions from this module in a more human readable form without creating having to your own application, check out the <a href="https://github.com/aberoth-community/ephemeris-discord-bot" target="_blank">Ephemeris Discord Bot</a>.</p>
 
 #### Installing
 The module can be downloaded from PyPI using
@@ -68,7 +68,7 @@ UPDATE_KEY={verification key for HTTP server}
 
 An excellent separate script that can be used to gather and send live calibration data to this module is the [Ephemeris Overheard Hook](https://github.com/aberoth-community/ephemeris-overheard-hook/tree/main) made by GitHub user [jvandag](https://github.com/jvandag). It is built on GitHub user [ashnel3's](https://github.com/ashnel3) [Overheard Scraper](https://github.com/aberoth-community/overheard) which scrapes the [Aberoth overheard page](https://aberoth.com/highscore/overheard.html) to find changes in scroll state, moon phase, time of day, and number of players online.
 
-For formatting of this HTTP message refer to this [example fetch request](aberoth_ephemeris/UpdateWebServer/exampleCalibrationMsg.js).
+For formatting of this HTTP message refer to this [example fetch request](https://github.com/jvandag/aberoth-ephemeris/blob/main/aberoth_ephemeris/UpdateWebServer/exampleCalibrationMsg.js).
 
 #### Event Structure
 The calculated scroll events are stored in the `Ephemeris.scrollEventsCache` property which is formatted as follows
