@@ -12,7 +12,7 @@ setup(
     author="Jeremiah Vandagrift",
     url="https://github.com/jvandag/aberoth-ephemeris",
     author_email="",
-    description="Provides prediction for scroll and lunar events in the MMO Aberoth",
+    description="Provides predictions for scroll and lunar events in the MMO Aberoth",
     long_description=long_description,
     long_description_content_type="text/markdown",
     keywords=["aberoth", "solar system", "orbs", "ephemeris", "predictions", "MMO"],

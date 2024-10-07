@@ -165,3 +165,4 @@ newRefTimes.json
 testPage.html
 cache.json
 bot_DB.db
+.pypirc
