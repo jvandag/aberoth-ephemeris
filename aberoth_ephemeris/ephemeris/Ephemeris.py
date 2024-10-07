@@ -18,7 +18,34 @@ class Ephemeris:
         discordTimestamps: bool = False,
         multiProcess: bool = True,
         numCores: int | None = None,
+        varFile: str | None = None
     ) -> None:
+        """A class that creates information about upcoming scroll events and moon phases.
+
+        Parameters
+        ------------
+        start: `int`
+            The epoch time in ms that alignment calculations will start from.
+        end: `int`
+            The epoch time in ms that alignment calculations will stop at.
+        numMoonCycles: `int`
+            The number of cycles into the future that the moon phases are calculated for.
+        discordTimestamps: `bool` *(optional)*
+            Adds discord timestamp to event information if True. Defaults to False.
+        multiProcess: `bool` *(optional)*
+            Indicates that calculations should be split between multiple processes/cores.
+            Defaults to True.
+        numCores: `int | None` *(optional)*
+            Indicates the number of cores that should be used if multi-processing is enabled.
+            If set to None than all cores are used. Defaults to None.
+        varFile: `str | None` *(optional)*
+            The path to the file containing the orb variables. If set to none, the built in values
+            will be used. Defaults to None.
+
+        Returns
+        ---------
+        `None`
+        """
         self.discordTimestamps = discordTimestamps
         self.multiProcess = multiProcess
         self.numCores = numCores
@@ -40,7 +67,7 @@ class Ephemeris:
         self.noonRefTime = 1725903360554  # Night starts 42 minutes after
                
         base_path = Path(__file__).parent
-        self.variablesFile = base_path / "variables.json"
+        self.variablesFile =  base_path / "variables.json" if varFile == None else varFile
         self.cacheFile = base_path / "cache.json"
         self.newRefTimeFile = base_path.parent / "UpdateWebServer" / "newRefTimes.json"
         
@@ -156,7 +183,7 @@ class Ephemeris:
         startTime = int(startTime)
         stopTime = int(stopTime)
 
-        # divid the time range into ~equal chunks for each core
+        # divide the time range into ~equal chunks for each core
         chunkSize = (stopTime - startTime) // self.numCores
         chunks = []
         chunkNum = 0

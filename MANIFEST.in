@@ -1,0 +1,6 @@
+exclude *.log
+exclude .env
+exclude .gitignore
+exclude .aberoth_ephemeris\UpdateWebServer\exampleCalibrationMsg.js
+prune tests
+prune docs

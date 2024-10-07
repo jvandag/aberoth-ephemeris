@@ -8,7 +8,7 @@ with open(path.join(working_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name="aberoth-ephemeris",
-    version="1.0.0",
+    version="1.0.1",
     author="Jeremiah Vandagrift",
     url="https://github.com/jvandag/aberoth-ephemeris",
     author_email="",
