@@ -15,11 +15,10 @@ setup(
     description="Provides predictions for scroll and lunar events in the MMO Aberoth",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    keywords=["aberoth", "solar system", "orbs", "ephemeris", "predictions", "MMO"],
+    keywords=["aberoth", "solar system", "orbs", "ephemeris", "predictions", "MMO", "Overheard"],
     packages=find_packages(),
     package_data={
-        "aberoth_ephemeris.ephemeris": [".variables.json", "sampleData/glows/*.json", "sampleData/dims/*.json"],
-        "aberoth_ephemeris.UpdateWebServer": ["*.json", "*.html"]
+        "aberoth_ephemeris.ephemeris": [".variables.json"],
     },
     install_requires=[
     "numpy==1.26.4",

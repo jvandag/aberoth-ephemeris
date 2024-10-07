@@ -1,6 +1,11 @@
 exclude *.log
 exclude .env
 exclude .gitignore
-exclude .aberoth_ephemeris\UpdateWebServer\exampleCalibrationMsg.js
+exclude aberoth_ephemeris/UpdateWebServer/*.json
+exclude aberoth_ephemeris/UpdateWebServer/*.html
+exclude aberoth_ephemeris/UpdateWebServer/*.js
+exclude aberoth_ephemeris/ephemeris/cache.json
+exclude aberoth_ephemeris/ephemeris/sampleData/glows/*
+exclude aberoth_ephemeris/ephemeris/sampleData/dims/*
 prune tests
 prune docs
