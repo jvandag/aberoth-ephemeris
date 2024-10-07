@@ -6,7 +6,7 @@
 
 <h1 align="center">Aberoth Ephemeris</h1>
 
-<p>A Python module that provides information about upcoming scroll events and moon phases in the MMORPG <a href="https://www.aberoth.com">Aberoth</a>.</p>
+<p>A Python module that provides information about upcoming scroll events and moon phases in the MMORPG <a href="https://www.aberoth.com">Aberoth</a>. If you're looking for an easy way to get the predictions from this module in a more human readable form without creating having to your own application, check out the <a href="https://github.com/aberoth-community/ephemeris-discord-bot">Ephemeris Discord Bot</a>.</p>
 
 #### Installing
 The module can be downloaded from PyPI using
