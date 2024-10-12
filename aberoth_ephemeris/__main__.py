@@ -9,7 +9,7 @@ if __name__ == "__main__":
         Parameters
         ---------
             milliseconds: `int`
-                The lenght of time to be formatted
+                The length of time to be formatted
         Returns
         ---------
             `str`
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     )
     stopTime = time.time_ns() // 1_000_000
     print(
-        f"{ephemeris.numCores} cores; Execution time: {formatTime(stopTime-startTime)}"
+        f"{ephemeris.__numCores} cores; Execution time: {formatTime(stopTime-startTime)}"
     )
     print("First scroll event:", ephemeris.scrollEventsCache[0])
     print("Last scroll event:", ephemeris.scrollEventsCache[-1])
