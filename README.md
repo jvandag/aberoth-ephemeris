@@ -95,7 +95,7 @@ The calculated moon phases are stored in the `Ephemeris.moonCyclesCache` propert
 ```python
 [
     (
-        currentTime,
+        timestamp,
         {
             "phase": phase,
             "discordTS": f"<t:{int(np.floor(currentTime/1000))}:D> <t:{int(np.floor(currentTime/1000))}:t>",
