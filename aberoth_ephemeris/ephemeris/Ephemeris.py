@@ -444,7 +444,7 @@ class Ephemeris:
                 # add the still aligned orbs to the glow list
                 glowList.extend(stillAligned)
         else:
-            # if not a new dark or returning to normal, newly algined orbs should be glowing
+            # if not a new dark or returning to normal, newly aligned orbs should be glowing
             glowList.extend(aligned)
 
         event = (
@@ -485,11 +485,11 @@ class Ephemeris:
                 # threshold for alignment with the shadow orb
                 alignmentPos = arr < self.__darkThresh
             else:
-                # all other orbs have the same threshhold of alignment
+                # all other orbs have the same threshold of alignment
                 alignmentPos = arr < self.__glowThresh
             for j in np.where(alignmentPos)[0]:
                 # gets the indices of the orbs that are aligned with the current orb
-                # sets the current orb and that indice to True (aligned) in the alignments states list
+                # sets the current orb and that index to True (aligned) in the alignments states list
                 alignmentStates[i] = alignmentStates[i + j + 1] = True
         return alignmentStates
 
@@ -532,13 +532,13 @@ class Ephemeris:
         `np.ndarray[float]`
             An array with each index corresponding to the position of a unique orb relative to the candle.
         """
-        # get the positions of the orbs relative to white, exluding the shadow orb
+        # get the positions of the orbs relative to white, excluding the shadow orb
         rw = self._posRelWhite(time)
         # prepend the shadow orb (moon equivalent) position relative to the candle
         positions = np.array([self._getShadowPos(time), (rw[0] + 180) % 360])
 
         # find the x and y offset of the of the orbs relative to the candle
-        # note candle implicitly has a radius of 1, or 1 AU and planet raddi are in AU
+        # note candle implicitly has a radius of 1, or 1 AU and planet radii are in AU
         x = self._radii[1:8] * np.cos(np.radians(rw[1:8])) - np.cos(np.radians(rw[0]))
         y = self._radii[1:8] * np.sin(np.radians(rw[1:8])) - np.sin(np.radians(rw[0]))
         # calculate the angular positions relative to the candle using the arctan and the x and y offsets
@@ -750,7 +750,7 @@ class Ephemeris:
             outfile.write(json_object)
 
     def _getVariables(self, variablesFile: Path) -> dict[str, dict]:
-        """Gets the orb variabes from a local JSON file.
+        """Gets the orb variables from a local JSON file.
 
         Parameters
         ---------
@@ -1004,7 +1004,7 @@ class Ephemeris:
                         },
                     )
                 )
-                # every phase except the exclictly checked ones last 5 to 6 days
+                # every phase except the explicitly checked ones last 5 to 6 days
                 currentTime = currentTime + 5 * self.__oneAberothDay
 
                 dayStartWPos = self._getWhitePos(currentTime)
