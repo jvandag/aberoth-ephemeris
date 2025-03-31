@@ -7,14 +7,14 @@ It's important to gather white's position first since the period of the moon is 
 - Find the position of the shadow orb relative to the candle at this exact alignment time.
 - Add 180 degrees to this position and then modulus by 360 to find the position of the candle relative to the white orb
 - Replace the refTime and refPos in your [variables file](aberoth_ephemeris\ephemeris\variables.json) with the exact alignment time and the found position respectively
-- If the shadow orb and the candle are not on the same side of the white orb, set the refOffset to 180 degrees, otherwise set it to 0
+- The refOffset is unused for the candle so there is no need to set it
 
 ## Getting the orb's positions
 The order in which you get the positions of the remaining orbs does not matter, just make sure you've calibrated the candle's position first.
 The white orb will not be calibrated as it's used as a reference point. Calibrations to the shadow orb should be made using manually gathered data. The process for calibrating the shadow orb's position is detailed in the next section.
 - First find the epoch in milliseconds of the start and end time of the most recent accurate alignment between the orb in question and the white orb. 
 - Next, sum the start and end times and divide by two to get the time that the orbs should be exactly aligned.
-- Find the position of the candle relative to the shadow orb at this exact alignment time, this will be your refPos
+- Find the position of the candle relative to the white orb at this exact alignment time, this will be your refPos
 - If the candle and the orb in question are on opposite sides of the white orb set the refOffset for the respective orb to 180, otherwise set it to 0
 
 ## Getting the shadow orb's position
