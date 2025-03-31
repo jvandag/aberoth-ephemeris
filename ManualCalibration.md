@@ -14,8 +14,8 @@ The order in which you get the positions of the remaining orbs does not matter, 
 The white orb will not be calibrated as it's used as a reference point. Calibrations to the shadow orb should be made using manually gathered data. The process for calibrating the shadow orb's position is detailed in the next section.
 - First find the epoch in milliseconds of the start and end time of the most recent accurate alignment between the orb in question and the white orb. 
 - Next, sum the start and end times and divide by two to get the time that the orbs should be exactly aligned.
-- Find the position of the candle relative to the white orb at this exact alignment time, this will be your refPos
 - If the candle and the orb in question are on opposite sides of the white orb set the refOffset for the respective orb to 180, otherwise set it to 0
+- You needn't find the position of the orb, only the time of alignment and the offset.
 
 ## Getting the shadow orb's position
 Calibration for the shadow orb must be done manually. It is recommended to record the orb room with a epoch clock visible in the recording to gather data.
