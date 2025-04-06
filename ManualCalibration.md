@@ -8,6 +8,7 @@ It's important to gather white's position first since the period of the moon is 
 - Add 180 degrees to this position and then modulus by 360 to find the position of the candle relative to the white orb
 - Replace the refTime and refPos in your [variables file](aberoth_ephemeris\ephemeris\variables.json) with the exact alignment time and the found position respectively
 - The refOffset is unused for the candle so there is no need to set it
+- If the moon predictions are off by half a cycle, use the next or previous white glow to calibrate instead
 
 ## Getting the orb's positions
 The order in which you get the positions of the remaining orbs does not matter, just make sure you've calibrated the candle's position first.
