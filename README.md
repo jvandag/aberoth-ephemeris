@@ -28,11 +28,12 @@ startTime = round((time.time() * 1000) + -4 * ms_1day)
 # 35 days after the current time
 endTime = round((time.time() * 1000) + 35 * ms_1day)
 
-ephemeris = Ephemeris(
+if __name__ == '__main__':
+    ephemeris = Ephemeris(
     # the epoch time in ms that prediction calculations will start from
-    start=round((time.time() * 1000) + -4 * 86400000),
+    start=startTime,
     # the epoch time in ms that scroll prediction calculations will stop at
-    end=round((time.time() * 1000) + 35 * 86400000),
+    end=endTime,
     # the number of cycles into the future that the moon phases are calculated for
     numMoonCycles=8, 
     # adds discord timestamp to ephemeris event information if True
