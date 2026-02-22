@@ -1,4 +1,4 @@
-https://web.archive.org/web/20250802141251/https://nssdc.gsfc.nasa.gov/planetary/factsheet/<div style="user-select: none;" align="center">
+<div style="user-select: none;" align="center">
     
 ![Ephemeris Logo](https://github.com/user-attachments/assets/ff091f40-9b89-453d-9692-cf10c9500475)
     
