@@ -1,7 +1,6 @@
 from .ephemeris import Ephemeris
-from .UpdateWebServer import app
 
-if __name__ == "__main__":
+def main():
     
     def formatTime(milliseconds: int) -> str:
         """Takes in a length of time in milliseconds and formats it into h:m:s:ms format.
@@ -36,13 +35,17 @@ if __name__ == "__main__":
     )
     stopTime = time.time_ns() // 1_000_000
     print(
-        f"{ephemeris.__numCores} cores; Execution time: {formatTime(stopTime-startTime)}"
+        f"{ephemeris.numCores} cores; Execution time: {formatTime(stopTime-startTime)}"
     )
     print("First scroll event:", ephemeris.scrollEventsCache[0])
     print("Last scroll event:", ephemeris.scrollEventsCache[-1])
     print("First moon event:", ephemeris.moonCyclesCache[0])
-    print("Last moon event:", ephemeris.moonCyclesCache[0])
+    print("Last moon event:", ephemeris.moonCyclesCache[-1])
     # import timeit
     # execution_time = timeit.timeit("Ephemeris(start=round((time.time() * 1000) - 0 * 86400000), end=round((time.time() * 1000) + 35 * 86400000), numMoonCycles=8, multiProcess=False)", globals=globals(), number=10)
     
     # print(execution_time/10)
+
+
+if __name__ == "__main__":
+    main()

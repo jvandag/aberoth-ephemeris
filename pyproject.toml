@@ -6,9 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "aberoth-ephemeris"
 dynamic = ["version"]
 
-requires-python = ">= 3.8"
+description = "Provides predictions for scroll and lunar events in the MMO Aberoth"
+authors = [{name = "Jeremiah Vandagrift"}]
+requires-python = ">=3.10"
 dependencies = [
-    "numpy==1.26.4",
+    "numpy>=1.26,<3",
     "python-dotenv==1.0.1",
     "Flask==3.0.3",
     "Flask-Cors==4.0.1",
@@ -16,11 +18,14 @@ dependencies = [
 ]
 
 readme = "README.md"
-license = {file = "LICENSE"}
+license = {file = "LICENSE.txt"}
 keywords = ["aberoth", "solar system", "orbs", "ephemeris"]
+
+[project.urls]
+Homepage = "https://github.com/jvandag/aberoth-ephemeris"
 
 [project.optional-dependencies]
 dev = ["pytest", "black", "pre_commit", "twine", "wheel", "setuptools"]
 
 [project.scripts]
-aberoth_ephemeris = "aberoth_ephemeris:__init__"
+aberoth_ephemeris = "aberoth_ephemeris.__main__:main"
