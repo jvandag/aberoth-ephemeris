@@ -890,98 +890,77 @@ class Ephemeris:
         if numMoonCycles == 0:
             return []
 
-        # 8 phases in one moon cycle plus almost full and almost new
-        numEvents = numMoonCycles * 10
-        # phases change at noon so we will increment from the previous noon by one aberoth day
-        currentTime = self.getLastNoonTime(startTime)
-        tempCache = []
+        # Snapshot orbital data once per calendar, including Python scalar values
+        # for the white orb. Calibration updates take effect on the next call.
+        white_rate = 360 / float(self.periods[0])
+        white_ref_time = self.refTimes[0].item()
+        white_ref_position = float(self.refPositions[0])
+        shadow = self.v["shadow"]
+        shadow_rate = 360 / shadow["period"]
+        shadow_ref_time = shadow["refTime"]
+        shadow_ref_offset = shadow["refOffset"]
+        day_duration = self.oneAberothDay
+        phase_skip = 5 * day_duration
 
-        # phase is determined by the position of the white orb (sun equivalent)
-        # and the shadow orb (moon equivalent) relative to the candle (earth equivalent)
-        dayStartWPos = self.getWhitePos(currentTime)
-        dayStartSPos = self.getShadowPos(currentTime)
-        while len(tempCache) < numEvents:
+        def lunar_position(timestamp):
+            """Moon angle in the frame where the sun is fixed at 180 degrees."""
+            white_position = (
+                white_rate * (timestamp - white_ref_time) + white_ref_position
+            ) % 360
+            shadow_position = (
+                shadow_rate * (timestamp - shadow_ref_time) + shadow_ref_offset
+            ) % 360
+            return (shadow_position - white_position + 360) % 360
+
+        def add_event(timestamp, phase):
+            seconds = int(np.floor(timestamp / 1000))
+            events.append(
+                (
+                    timestamp,
+                    {
+                        "phase": phase,
+                        "discordTS": f"<t:{seconds}:D> <t:{seconds}:t>",
+                    },
+                )
+            )
+
+        # Retain the API's ten-event budget per requested cycle. Moon phases
+        # change at noon; begin at the noon preceding the requested start.
+        event_count = numMoonCycles * 10
+        current_time = self.getLastNoonTime(startTime)
+        events = []
+        start_position = lunar_position(current_time)
+        while len(events) < event_count:
             phase = ""
-            nextPhase = ""
-            nextNoonTime = currentTime + self.oneAberothDay
-            dayEndWPos = self.getWhitePos(nextNoonTime)
-            dayEndSPos = self.getShadowPos(nextNoonTime)
+            next_phase = ""
+            next_noon = current_time + day_duration
+            end_position = lunar_position(next_noon)
 
-            # get the position of the moon from the perspective of the earth
-            # in the frame of reference where the sun is fixed at 180 degrees relative to the earth
-            lunarCycleStartPos = (dayStartSPos - dayStartWPos + 360) % 360
-            lunarCycleEndPos = (dayEndSPos - dayEndWPos + 360) % 360
-
-            # new moon occur on a night that the moon crosses the 360/0 degree threshold
-            if (
-                lunarCycleStartPos < 360
-                and lunarCycleStartPos > 347.5
-                and (lunarCycleEndPos > 360 or lunarCycleEndPos < 12.5)
-            ):
+            # Primary phases occur when the moon crosses these angular boundaries
+            # between consecutive noons. Intermediate phases begin the next noon.
+            if 347.5 < start_position < 360 and end_position < 12.5:
                 phase = "new"
-                nextPhase = "waxing_crescent"
-            # first quarter occurs on the night the moon cross 90 degrees
-            elif lunarCycleStartPos < 90 and lunarCycleEndPos > 90:
+                next_phase = "waxing_crescent"
+            elif start_position < 90 and end_position > 90:
                 phase = "first_quarter"
-                nextPhase = "waxing_gibbous"
-            # full moon occurs on the night the moon cross 180 degrees
-            elif lunarCycleStartPos < 180 and lunarCycleEndPos > 180:
+                next_phase = "waxing_gibbous"
+            elif start_position < 180 and end_position > 180:
                 phase = "full"
-                nextPhase = "waning_gibbous"
-            # third quarter occurs on the night the moon cross 90 degrees
-            elif lunarCycleStartPos < 270 and lunarCycleEndPos > 270:
+                next_phase = "waning_gibbous"
+            elif start_position < 270 and end_position > 270:
                 phase = "third_quarter"
-                nextPhase = "waning_crescent"
+                next_phase = "waning_crescent"
 
-            # since phases always occur sequentially, only the new, q1, full, and q3 phases need to be determined
-            # note that the length of the other phases can change a full a aberoth day as their length is determined
-            # by when four primary phases happen and end
-
-            if phase != "":
-                tempCache.append(
-                    (
-                        currentTime,
-                        {
-                            "phase": phase,
-                            "discordTS": f"<t:{int(np.floor(currentTime/1000))}:D> <t:{int(np.floor(currentTime/1000))}:t>",
-                            # "discordRelTS": f'<t:{np.floor(currentTime/1000)}:R>'
-                        },
-                    )
-                )
-                tempCache.append(
-                    (
-                        nextNoonTime,
-                        {
-                            "phase": nextPhase,
-                            "discordTS": f"<t:{int(np.floor(nextNoonTime/1000))}:D> <t:{int(np.floor(nextNoonTime/1000))}:t>",
-                            # "discordRelTS": f'<t:{np.floor(nextNoonTime/1000)}:R>'
-                        },
-                    )
-                )
-                # every phase except the explicitly checked ones last 5 to 6 days
-                currentTime = currentTime + 5 * self.oneAberothDay
-
-                dayStartWPos = self.getWhitePos(currentTime)
-                dayStartSPos = self.getShadowPos(currentTime)
+            if phase:
+                add_event(current_time, phase)
+                add_event(next_noon, next_phase)
+                # Intermediate phases last five to six Aberoth days.
+                current_time += phase_skip
+                start_position = lunar_position(current_time)
             else:
-                dayStartWPos = dayEndWPos
-                dayStartSPos = dayEndSPos
-                currentTime = nextNoonTime
-        # print(tempCache)
-        firstPhase = tempCache[0][1]["phase"]
-        previousPhase = ""
-        if firstPhase == "new":
-            previousPhase = "waning_crescent"
-        elif firstPhase == "first_quarter":
-            previousPhase = "waxing_crescent"
-        elif firstPhase == "full":
-            previousPhase = "waxing_gibbous"
-        elif firstPhase == "third_quarter":
-            previousPhase = "waning_gibbous"
-
-        # tempCache.insert(0, previousPhase)
-        # print(tempCache)
-        return tempCache
+                start_position = end_position
+                current_time = next_noon
+        return events
 
     def getLastNoonTime(self, time: int) -> int:
         """Gets the time at which noon last occurred in aberoth relative to the passed in time.
