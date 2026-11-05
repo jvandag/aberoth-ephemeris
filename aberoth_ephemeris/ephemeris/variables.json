@@ -7,9 +7,9 @@
   "candle": {
     "period": 3155693335.5018735,
     "radius": 1,
-    "refTime": 1793609752000,
-    "refOffset": 180,
-    "refPos": 356.32833779155044
+    "refTime": 1715408029250,
+    "refOffset": 0,
+    "refPos": 75.11734465119662
   },
   "white": {
     "school": "Divination"
@@ -18,56 +18,56 @@
     "school": "Evocation",
     "period": 760047346.0795634,
     "radius": 0.39527811471484464,
-    "refTime": 1793182090500,
+    "refTime": 1743123018000,
     "refOffset": 180,
-    "refPos": 127.54091657163809
+    "refPos": 176.8301250894201
   },
   "green": {
     "school": "Enchantment",
     "period": 1941368875.9800508,
     "radius": 0.723344283264384,
-    "refTime": 1792523746000,
-    "refOffset": 180,
-    "refPos": 52.437288049284405
+    "refTime": 1739550401000,
+    "refOffset": 0,
+    "refPos": 309.26767105411545
   },
   "red": {
     "school": "Necromancy",
     "period": 5934973460.125423,
     "radius": 1.5302954272678218,
-    "refTime": 1787170691000,
-    "refOffset": 0,
-    "refPos": 341.76331085386755
+    "refTime": 1743368625500,
+    "refOffset": 180,
+    "refPos": 204.84891227804837
   },
   "purple": {
     "school": "Transmutation",
     "period": 37418458533.80981,
     "radius": 5.20962841900796,
-    "refTime": 1790152283500,
+    "refTime": 1741903502000,
     "refOffset": 0,
-    "refPos": 321.90197005894316
+    "refPos": 217.7083178273151
   },
   "yellow": {
     "school": "Conjuration",
     "period": 92824026759.27953,
     "radius": 9.550839746122902,
-    "refTime": 1790462563000,
-    "refOffset": 180,
-    "refPos": 177.29850835477708
+    "refTime": 1743094659000,
+    "refOffset": 0,
+    "refPos": 353.59494381082595
   },
   "cyan": {
     "school": "Abjuration",
     "period": 264281197669.97778,
     "radius": 19.205629014441172,
-    "refTime": 1793625428500,
+    "refTime": 1739330324500,
     "refOffset": 180,
-    "refPos": 178.11670548130962
+    "refPos": 104.16144824447701
   },
   "blue": {
     "school": "Illusion",
     "period": 516765634992.3882,
     "radius": 30.074526665845994,
-    "refTime": 1793045943500,
+    "refTime": 1742244625500,
     "refOffset": 180,
-    "refPos": 112.00933134166672
+    "refPos": 76.62352502392014
   }
 }
